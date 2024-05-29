@@ -3,12 +3,14 @@
 
 
     $fullWeather = '';
+    $error = array('city' => '');
 
     if(isset($_POST['submit'])) {
 
-        if($_POST['city'] == '') {
+        if(empty($_POST['city'])) {
 
-            echo "empty input, write a city name";
+            // echo "empty input, write a city name";
+            $error['city'] = "Input field cannot be empty";
         } else {
 
             $city = $_POST['city'];
@@ -66,11 +68,11 @@
                                 <button type="submit" name="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>
+                        <div class="alert text-danger"><?php echo $error['city']; ?></div>
                     </form>
                     <?php if($fullWeather) : ?>
                         <div class="alert alert-success bg-success text-white"><?php echo $fullWeather; ?></div>
                     <?php endif; ?>
-
                 </div>
            </div>
         </div>
